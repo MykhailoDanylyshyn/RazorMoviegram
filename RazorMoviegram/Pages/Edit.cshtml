@@ -1,0 +1,75 @@
+﻿@page "{id:int}"
+@model RazorMoviegram.Pages.EditModel
+
+@{
+    ViewData["Title"] = "Редагувати фільм";
+}
+
+<h1>Редагувати фільм</h1>
+
+<form method="post" enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="Movie.Id" />
+    <input type="hidden" asp-for="Movie.PosterPath" />
+
+    <div class="mb-3">
+        <label asp-for="Movie.Title" class="form-label">Назва</label>
+        <input asp-for="Movie.Title" class="form-control" />
+        <span asp-validation-for="Movie.Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Movie.Year" class="form-label">Рік</label>
+        <input asp-for="Movie.Year" class="form-control" />
+        <span asp-validation-for="Movie.Year" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Movie.Genre" class="form-label">Жанр</label>
+        <input asp-for="Movie.Genre" class="form-control" />
+        <span asp-validation-for="Movie.Genre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Movie.Director" class="form-label">Режисер</label>
+        <input asp-for="Movie.Director" class="form-control" />
+        <span asp-validation-for="Movie.Director" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Movie.Description" class="form-label">Опис</label>
+        <textarea asp-for="Movie.Description" class="form-control"></textarea>
+        <span asp-validation-for="Movie.Description" class="text-danger"></span>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Movie.PosterPath))
+    {
+        <div class="mb-3">
+            <label class="form-label">Поточний постер</label>
+            <br />
+            <img src="@Model.Movie.PosterPath"
+                 alt="@Model.Movie.Title"
+                 style="width: 150px;" />
+        </div>
+    }
+
+    <div class="mb-3">
+        <label class="form-label">Новий постер</label>
+
+        <input type="file" name="PosterFile" class="form-control"
+               accept="image/jpeg,image/png,image/webp" />
+
+        <small class="text-muted">
+            Якщо новий постер не вибрати, залишиться старий.
+        </small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Зберегти</button>
+
+    <a asp-page="/Index" class="btn btn-secondary">Назад</a>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

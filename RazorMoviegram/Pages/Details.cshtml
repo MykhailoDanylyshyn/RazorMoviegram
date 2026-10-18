@@ -1,0 +1,52 @@
+﻿@page "{id:int}"
+@model RazorMoviegram.Pages.DetailsModel
+
+@{
+    ViewData["Title"] = "Деталі фільму";
+}
+
+<h1>Деталі фільму</h1>
+
+<div>
+    <h4>@Model.Movie.Title</h4>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-2">Назва</dt>
+        <dd class="col-sm-10">@Model.Movie.Title</dd>
+
+        <dt class="col-sm-2">Рік</dt>
+        <dd class="col-sm-10">@Model.Movie.Year</dd>
+
+        <dt class="col-sm-2">Жанр</dt>
+        <dd class="col-sm-10">@Model.Movie.Genre</dd>
+
+        <dt class="col-sm-2">Режисер</dt>
+        <dd class="col-sm-10">@Model.Movie.Director</dd>
+
+        <dt class="col-sm-2">Опис</dt>
+        <dd class="col-sm-10">@Model.Movie.Description</dd>
+
+        <dt class="col-sm-2">Постер</dt>
+        <dd class="col-sm-10">
+            @if (!string.IsNullOrEmpty(Model.Movie.PosterPath))
+            {
+                <img src="@Model.Movie.PosterPath"
+                     alt="@Model.Movie.Title"
+                     style="width: 200px;" />
+            }
+        </dd>
+    </dl>
+</div>
+
+<div class="mt-3">
+    <a asp-page="/Movies/Edit"
+       asp-route-id="@Model.Movie.Id"
+       class="btn btn-warning">
+        Редагувати
+    </a>
+
+    <a asp-page="/Index" class="btn btn-secondary ms-2">
+        Повернутися до списку
+    </a>
+</div>

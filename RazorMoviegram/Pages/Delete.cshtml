@@ -1,0 +1,51 @@
+﻿@page "{id:int}"
+@model RazorMoviegram.Pages.DeleteModel
+
+@{
+    ViewData["Title"] = "Видалити фільм";
+}
+
+<h1>Видалити фільм</h1>
+
+<h3>Ви дійсно хочете видалити цей фільм?</h3>
+
+<hr />
+
+<div>
+    <h4>@Model.Movie.Title</h4>
+
+    <dl class="row">
+        <dt class="col-sm-2">Назва</dt>
+        <dd class="col-sm-10">@Model.Movie.Title</dd>
+
+        <dt class="col-sm-2">Рік</dt>
+        <dd class="col-sm-10">@Model.Movie.Year</dd>
+
+        <dt class="col-sm-2">Жанр</dt>
+        <dd class="col-sm-10">@Model.Movie.Genre</dd>
+
+        <dt class="col-sm-2">Режисер</dt>
+        <dd class="col-sm-10">@Model.Movie.Director</dd>
+
+        <dt class="col-sm-2">Опис</dt>
+        <dd class="col-sm-10">@Model.Movie.Description</dd>
+
+        <dt class="col-sm-2">Постер</dt>
+        <dd class="col-sm-10">
+            @if (!string.IsNullOrEmpty(Model.Movie.PosterPath))
+            {
+                <img src="@Model.Movie.PosterPath"
+                     alt="@Model.Movie.Title"
+                     style="width: 200px;" />
+            }
+        </dd>
+    </dl>
+
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Видалити</button>
+
+        <a asp-page="/Index" class="btn btn-secondary ms-2">
+            Скасувати
+        </a>
+    </form>
+</div>

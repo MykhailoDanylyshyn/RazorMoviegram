@@ -1,0 +1,62 @@
+﻿@page
+@model RazorMoviegram.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Додати фільм";
+}
+
+<h1>Додати фільм</h1>
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="mb-3">
+        <label asp-for="Movie.Title" class="form-label">Назва</label>
+        <input asp-for="Movie.Title" class="form-control"
+               placeholder="Введіть назву фільму" />
+        <span asp-validation-for="Movie.Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Movie.Year" class="form-label">Рік</label>
+        <input asp-for="Movie.Year" class="form-control"
+               placeholder="Введіть рік" />
+        <span asp-validation-for="Movie.Year" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Movie.Genre" class="form-label">Жанр</label>
+        <input asp-for="Movie.Genre" class="form-control"
+               placeholder="Введіть жанр" />
+        <span asp-validation-for="Movie.Genre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Movie.Director" class="form-label">Режисер</label>
+        <input asp-for="Movie.Director" class="form-control"
+               placeholder="Введіть режисера" />
+        <span asp-validation-for="Movie.Director" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Movie.Description" class="form-label">Опис</label>
+        <textarea asp-for="Movie.Description" class="form-control"
+                  placeholder="Введіть опис фільму" rows="4"></textarea>
+        <span asp-validation-for="Movie.Description" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Постер</label>
+        <input type="file" asp-for="PosterFile" class="form-control"
+               accept="image/jpeg,image/png,image/webp" />
+        <span asp-validation-for="Movie.PosterPath" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Додати</button>
+
+    <a asp-page="/Index" class="btn btn-secondary">Назад</a>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
